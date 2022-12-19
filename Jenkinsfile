@@ -1,5 +1,9 @@
 pipeline{
     agent any
+     tools {
+          maven 'MAVEN_HOME'
+
+        }
     stages{
         stage('Git clone'){
             steps{
@@ -9,7 +13,7 @@ pipeline{
         
         stage('maven build'){
             steps{
-                sh 'maven package'
+                sh 'mvn package'
             }
         }
         stage('Create Dockerimage'){
