@@ -1,7 +1,4 @@
-FROM openjdk:8-jdk-alpine
-COPY ./target/helloworld-0.0.1.war /usr/app/
-WORKDIR /usr/app
+FROM lolhens/baseimage-openjre
+ADD target/helloworld-0.0.1.jar helloworld-0.0.1.jar
 EXPOSE 80
-ENTRYPOINT ["java","-jar","helloworld-0.0.1.war"]
-
-
+ENTRYPOINT ["java", "-jar", "helloworld-0.0.1.jar"]
