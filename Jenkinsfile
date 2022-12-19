@@ -24,7 +24,7 @@ pipeline{
         }
 		stage('Deploy Dockerimage'){
             steps{
-				  def dockerImageTag = "springboot-deploy${env.BUILD_NUMBER}"
+
                   echo "Docker Image Tag Name: ${dockerImageTag}"
                   sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
                   sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
