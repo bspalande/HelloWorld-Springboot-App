@@ -16,21 +16,24 @@ pipeline{
                 sh 'mvn package'
             }
         }
-        stage('Create Dockerimage'){
-            steps{
-                sh 'docker build -t springboot-deploy:${env.BUILD_NUMBER} .'
+       // stage('Create Dockerimage'){
+          //  steps{
+           //     sh 'docker build -t thetips4you/springboot:latest .'
+          //  }
+       // }
 
-           }
-        }
-
-
+         stage('Build docker') {
+                    steps{
+                         sh 'docker.build("springboot-deploy:${env.BUILD_NUMBER}")'
+                         }
+                  }
 
                   stage('Deploy docker'){
                    steps{
                           echo "Docker Image Tag Name: ${dockerImageTag}"
                           sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
                           sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
-                          }
+
                   }
         
     }
