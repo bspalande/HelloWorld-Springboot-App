@@ -18,16 +18,15 @@ pipeline{
         }
         stage('Create Dockerimage'){
             steps{
-                sh 'docker build -t thetips4you/springboot:latest .'
-				sh 'docker.build  -t springboot-deploy:${env.BUILD_NUMBER} .'
+                sh 'docker build -t springboot-deploy:latest .'
+
             }
         }
 		stage('Deploy Dockerimage'){
             steps{
-                  //def dockerImageTag = "springboot-deploy${env.BUILD_NUMBER}"
-                  echo "Docker Image Tag Name:springboot-deploy${env.BUILD_NUMBER}"
+
                   sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
-                  sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
+                  sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:latest"
             }
         }
         
