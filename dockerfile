@@ -5,4 +5,3 @@ ENV PORT 8081
 EXPOSE $PORT
 
 ENTRYPOINT ["java","-jar","helloworld-0.0.1.war"]
-z
