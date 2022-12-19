@@ -16,18 +16,14 @@ pipeline{
                 sh 'mvn package'
             }
         }
-       // stage('Create Dockerimage'){
-          //  steps{
-           //     sh 'docker build -t thetips4you/springboot:latest .'
-           //
-          //  }
-       // }
+        stage('Create Dockerimage'){
+            steps{
+                sh 'docker build -t "springboot-deploy:${env.BUILD_NUMBER}" .'
 
-         stage('Build docker') {
-                    steps{
-                         dockerImage = docker.build("springboot-deploy:${env.BUILD_NUMBER}")
-                         }
-                  }
+           }
+        }
+
+
 
                   stage('Deploy docker'){
                    steps{
