@@ -1,10 +1,8 @@
-# Docker Build Stage
 FROM openjdk:8-jdk-alpine
-
-COPY --from=build /opt/app/target/*.jar app.jar
-
+COPY ./target/helloworld-0.0.1.war /usr/app/
+WORKDIR /usr/app
 ENV PORT 8081
 EXPOSE $PORT
 
-ENTRYPOINT ["java","-jar","-Xmx1024M","-Dserver.port=${PORT}","app.jar"]
-
+ENTRYPOINT ["java","-jar","helloworld-0.0.1.war"]
+z
