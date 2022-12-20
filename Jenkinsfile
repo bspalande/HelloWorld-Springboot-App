@@ -21,7 +21,7 @@ pipeline{
         stage('Create Dockerimage'){
             steps{
                 sh 'docker build -t springboot-deploy:latest .'
-                sh 'docker.build(springboot-deploy:${env.BUILD_NUMBER})'
+                sh "docker.build('springboot-deploy:${env.BUILD_NUMBER}')"
 
 
 
