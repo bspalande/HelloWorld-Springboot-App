@@ -24,7 +24,7 @@ pipeline{
 
 
  sh """
-           docker build -t  "springboot-deploy:${BUILD_VERSION}" .
+           docker build -t  "springboot-deploy:${env.BUILD_NUMBER}" .
           """
 
             }
